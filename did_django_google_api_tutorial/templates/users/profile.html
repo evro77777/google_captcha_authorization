@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block extend_head %}
+
+{% endblock %}
+
+
+{% block content %}
+
+    <h3>Django Google API Course - User Profile</h3>
+
+    <div class="container">
+        {% if request.user.userprofile.has_profile %}
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Field</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Address</td>
+                    <td>
+                        <address>
+                            {{ request.user.userprofile.country}}<br>
+                            {{ request.user.userprofile.town }}<br>
+                            {{ request.user.userprofile.address }}<br>
+                            {{ request.user.userprofile.post_code }}<br>
+                        </address>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            </br>
+
+        {% endif %}
+        <form id="profileform" method="POST" action="/profile">
+            {% csrf_token %}
+
+            <label for="country" class="">Country</label>
+            {{ form.country }}
+
+
+            <label for="town" class="">Town/City</label>
+            {{ form.town }}
+
+
+            <label for="address" class="">Address</label>
+            {{ form.address }}
+
+            <label for="post_code" class="">Postal Code</label>
+            {{ form.post_code }}
+
+
+            <button type="submit" id="profile-btn">Update</button>
+        </form>
+
+    </div>
+
+{% endblock %}
+
+{% block extend_footer %}
+
+
+
+
+
+{% endblock %}
